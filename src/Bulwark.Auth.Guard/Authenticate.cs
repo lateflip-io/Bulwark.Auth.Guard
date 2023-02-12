@@ -2,12 +2,12 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Cryptography;
 using System.Text.Json;
 using System.Threading.Tasks;
-using Bulwark.Auth.Client.Exceptions;
+using Bulwark.Auth.Guard.Exceptions;
 using JWT.Algorithms;
 using JWT.Builder;
 using RestSharp;
 
-namespace Bulwark.Auth.Client;
+namespace Bulwark.Auth.Guard;
 
 public class Authenticate
 {

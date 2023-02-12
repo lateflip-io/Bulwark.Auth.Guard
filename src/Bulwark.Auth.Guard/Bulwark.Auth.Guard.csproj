@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <AssemblyName>Guard</AssemblyName>
+    <Authors>lateflip.io</Authors>
+    <Description>A client for Bulwark-auth</Description>
+    <Copyright>lateflip.io</Copyright>
+    <Company>lateflip.io</Company>
+    <Product>Bulwark-auth</Product>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="RestSharp" />
+    <None Remove="Exceptions\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="JWT" Version="10.0.0" />
+    <PackageReference Include="RestSharp" Version="108.0.3" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.25.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Exceptions\" />
+  </ItemGroup>
+</Project>

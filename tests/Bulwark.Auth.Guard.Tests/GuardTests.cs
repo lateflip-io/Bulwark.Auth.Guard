@@ -1,4 +1,4 @@
-﻿namespace GuardTests;
+﻿namespace Bulwark.Auth.Guard.Tests;
 public class GuardBulwarkClientTests
 {
     private readonly Guard _guard;

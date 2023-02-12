@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Bulwark.Auth.Client.Exceptions;
+namespace Bulwark.Auth.Guard.Exceptions;
 public class BulwarkException : Exception
 {
 	public BulwarkException(string message) :

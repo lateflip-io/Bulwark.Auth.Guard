@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using RestSharp;
 
-namespace Bulwark.Auth.Client;
+namespace Bulwark.Auth.Guard;
 
 public class Guard
 {

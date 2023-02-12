@@ -1,4 +1,6 @@
-namespace GuardTests;
+using Bulwark.Auth.Guard.Exceptions;
+
+namespace Bulwark.Auth.Guard.Tests;
 
 public class AccountTest
 {

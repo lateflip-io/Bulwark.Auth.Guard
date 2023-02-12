@@ -1,9 +1,9 @@
-using System.Threading.Tasks;
 using System.Text.Json;
-using Bulwark.Auth.Client.Exceptions;
+using System.Threading.Tasks;
+using Bulwark.Auth.Guard.Exceptions;
 using RestSharp;
 
-namespace Bulwark.Auth.Client;
+namespace Bulwark.Auth.Guard;
 public class Account
 {
     private readonly RestClient _client;

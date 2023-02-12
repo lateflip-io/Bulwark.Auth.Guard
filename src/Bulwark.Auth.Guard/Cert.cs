@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace Bulwark.Auth.Client;
+namespace Bulwark.Auth.Guard;
 
 public class Cert
 {
