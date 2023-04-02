@@ -11,6 +11,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bulwark.Auth.Guard.Tests", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bulwark.Auth.Guard", "src\Bulwark.Auth.Guard\Bulwark.Auth.Guard.csproj", "{4C9ECB8A-8024-478B-B86D-585A6244AE5F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{55FFA036-6F30-4C27-AEBC-2BA5F87AB301}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{FE243A42-1EE4-4E88-BFEC-C8864948DE10}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\release.yaml = .github\workflows\release.yaml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,5 +42,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{6D049C56-0D48-4857-B11D-8E04132D519A} = {61A4D3D0-A77C-4225-A2DF-B3819A27B7F5}
 		{4C9ECB8A-8024-478B-B86D-585A6244AE5F} = {9B10AD40-C82C-48FF-AAEC-C966E8A3B076}
+		{FE243A42-1EE4-4E88-BFEC-C8864948DE10} = {55FFA036-6F30-4C27-AEBC-2BA5F87AB301}
 	EndGlobalSection
 EndGlobal
