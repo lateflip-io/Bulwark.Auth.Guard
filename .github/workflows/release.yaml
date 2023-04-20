@@ -7,7 +7,7 @@ on:
 env:
   PROJECT_PATH: 'Bulwark.Auth.Guard/Bulwark.Auth.Guard.csproj'
   PACKAGE_OUTPUT_DIRECTORY: ${{ github.workspace }}/output
-  NUGET_PUSH_URL: ${{ secrets.NUGET_PUSH_URL }}
+  NUGET_PUSH_URL: 'https://api.nuget.org/v3/index.json'
   NUGET_TOKEN: ${{ secrets.NUGET_TOKEN }}
 
 jobs:
