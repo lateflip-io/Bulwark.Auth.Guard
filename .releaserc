@@ -9,14 +9,14 @@
         [
             "@semantic-release/exec",
             {
-                "prepareCmd": "../updateVersion.sh '${nextRelease.version}' 'Bulwark.Auth/Bulwark.Auth.Guard.csproj'"
+                "prepareCmd": "../updateVersion.sh '${nextRelease.version}' 'Bulwark.Auth.Guard/Bulwark.Auth.Guard.csproj'"
             }
         ],
         [
             "@semantic-release/git",
             {
                 "assets": [
-                    "Bulwark.Auth/Bulwark.Auth.Guard.csproj"
+                    "Bulwark.Auth.Guard/Bulwark.Auth.Guard.csproj"
                 ],
                 "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
             }
