@@ -37,6 +37,8 @@ jobs:
 
       - name: 'Pack & Publish project'
         if: ${{ steps.release.outputs.new_release_version }}
+        with:
+          working_directory: ./src
         run: |
           dotnet clean
           dotnet pack ${{ env.PROJECT_PATH }} --configuration Release --include-symbols --output ${{ env.PACKAGE_OUTPUT_DIRECTORY }}
