@@ -5,7 +5,7 @@ on:
     branches:
       - main
 env:
-  PROJECT_PATH: 'Bulwark.Auth.Guard.csproj'
+  PROJECT_PATH: 'Bulwark.Auth.Guard/Bulwark.Auth.Guard.csproj'
   PACKAGE_OUTPUT_DIRECTORY: ${{ github.workspace }}/output
   NUGET_PUSH_URL: ${{ secrets.NUGET_PUSH_URL }}
   NUGET_TOKEN: ${{ secrets.NUGET_TOKEN }}
