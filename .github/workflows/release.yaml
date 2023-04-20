@@ -5,7 +5,7 @@ on:
     branches:
       - main
 env:
-  PROJECT_PATH: 'Bulwark.Auth.Guard/Bulwark.Auth.Guard.csproj'
+  PROJECT_PATH: 'src/Bulwark.Auth.Guard/Bulwark.Auth.Guard.csproj'
   PACKAGE_OUTPUT_DIRECTORY: ${{ github.workspace }}/output
   NUGET_PUSH_URL: 'https://api.nuget.org/v3/index.json'
   NUGET_TOKEN: ${{ secrets.NUGET_TOKEN }}
@@ -37,8 +37,6 @@ jobs:
 
       - name: 'Pack & Publish project'
         if: ${{ steps.release.outputs.new_release_version }}
-        with:
-          working_directory: ./src
         run: |
           dotnet clean
           dotnet pack ${{ env.PROJECT_PATH }} --configuration Release --include-symbols --output ${{ env.PACKAGE_OUTPUT_DIRECTORY }}
