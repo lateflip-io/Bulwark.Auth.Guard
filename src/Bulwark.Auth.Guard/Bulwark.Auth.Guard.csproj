@@ -5,10 +5,11 @@
     <Nullable>enable</Nullable>
     <AssemblyName>Guard</AssemblyName>
     <Authors>lateflip.io</Authors>
-    <Description>A client for Bulwark-auth</Description>
+    <Description>A client for Bulwark.Auth</Description>
     <Copyright>lateflip.io</Copyright>
     <Company>lateflip.io</Company>
     <Product>Bulwark-auth</Product>
+    <PackageId>Bulwark.Auth.Guard</PackageId>
   </PropertyGroup>
 
   <ItemGroup>
