@@ -27,9 +27,9 @@ jobs:
         with:
           working_directory: ./src
           extra_plugins: |
-            @semantic-release/commit-analyzer
-            @semantic-release/release-notes-generator
-            @semantic-release/github
+            @semantic-release/commit-analyzer@v9.0.2
+            @semantic-release/release-notes-generator@v10.0.3
+            @semantic-release/github@v8.1.0
             @semantic-release/git
             @semantic-release/exec
         env:
