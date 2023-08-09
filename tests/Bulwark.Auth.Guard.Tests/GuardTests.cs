@@ -1,12 +1,8 @@
 ﻿namespace Bulwark.Auth.Guard.Tests;
 public class GuardBulwarkClientTests
 {
-    private readonly Guard _guard;
-    public GuardBulwarkClientTests()
-    {
-        //https://localhost:44332
-        _guard = new Guard("http://localhost:7988");
-    }
+    private readonly Guard _guard = new("http://localhost:8080");
+    //https://localhost:44332
 
     [Fact]
     public async void Healthy()

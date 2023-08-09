@@ -209,7 +209,7 @@ public class Authenticate
         var payload = new
         {
             Email = email,
-            AccessToken = accessToken,
+            Token = accessToken,
             DeviceId = deviceId
         };
 

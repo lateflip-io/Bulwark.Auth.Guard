@@ -4,20 +4,12 @@ namespace Bulwark.Auth.Guard.Tests;
 
 public class AccountTest
 {
-    private readonly Guard _guard;
-    private readonly string _testEmail;
-    private readonly string _testPassword;
-    private readonly MailhogClient _mailHog;
-    
-    public AccountTest()
-    {
-        _guard = new Guard("http://localhost:7988");
-        _testEmail = $"test_{Guid.NewGuid()}@lateflip.io";
-        _testPassword = Guid.NewGuid().ToString();
-        _mailHog = new MailhogClient(
-            new Uri("http://localhost:8025"));
-    }
-    
+    private readonly Guard _guard = new("http://localhost:8080");
+    private readonly string _testEmail = $"test_{Guid.NewGuid()}@lateflip.io";
+    private readonly string _testPassword = $"{Guid.NewGuid().ToString()}1!S";
+    private readonly MailhogClient _mailHog = new(
+        new Uri("http://localhost:8025"));
+
     [Fact]
     public async void CreateVerifyBulwarkAccount()
     {
@@ -70,7 +62,7 @@ public class AccountTest
         message = messages.Items
             .FirstOrDefault(m => m.To[0].Address == _testEmail);
         Assert.NotNull(message);
-        await _guard.Account.ForgotPassword(_testEmail, "new-password",
+        await _guard.Account.ForgotPassword(_testEmail, "new-password1!S",
             message.Subject);
         await _mailHog.DeleteAsync(message.ID);
     }
@@ -78,7 +70,7 @@ public class AccountTest
     [Fact]
     public async void ChangePassword()
     {
-        var newPassword = "new-password";
+        var newPassword = "new-password1!S";
         await _guard.Account.Create(_testEmail, _testPassword);
         var messages = await _mailHog.GetMessagesAsync();
         var message = messages.Items
