@@ -50,7 +50,7 @@ public class AuthenticateTests
     [Fact]
     public async Task AuthenticatePasswordAndAcknowledgeValidateLocal()
     {
-        await _guard.Authenticate.InitializeLocalCertValidation();
+        await _guard.Authenticate.InitializeLocalKeyValidation();
         await _guard.Account.Create(_testEmail, _testPassword);
         var messages = await _mailHog.GetMessagesAsync();
         var message = messages.Items
