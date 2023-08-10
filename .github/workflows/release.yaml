@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - beta
 env:
   PROJECT_PATH: 'src/Bulwark.Auth.Guard/Bulwark.Auth.Guard.csproj'
   PACKAGE_OUTPUT_DIRECTORY: ${{ github.workspace }}/output
