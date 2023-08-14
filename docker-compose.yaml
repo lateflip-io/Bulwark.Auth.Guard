@@ -1,6 +1,6 @@
 services:
   bulwark.auth:
-    image: "lateflip/bulwark.auth:1.0.11-beta.2"
+    image: "lateflip/bulwark.auth:latest"
     env_file:
       - .env
     ports:
