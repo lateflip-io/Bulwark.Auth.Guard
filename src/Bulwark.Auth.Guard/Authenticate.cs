@@ -12,20 +12,24 @@ namespace Bulwark.Auth.Guard;
 public class Authenticate
 {
     private readonly RestClient _client;
-    private Dictionary<string, Key> _keys;
+    private Dictionary<string, Key> _keys = new();
+    private readonly Dictionary<SocialProvider, string> _socialProviders = new()
+    {
+        { SocialProvider.Google, "google" },
+        { SocialProvider.Microsoft, "microsoft" },
+        { SocialProvider.Github, "github" }
+    };
     
     public Authenticate(string baseUri)
     {
         _client = new RestClient(baseUri);
         _client.AddDefaultHeader("Content-Type", "application/json");
         _client.AddDefaultHeader("Accept", "application/json");
-        _keys = new Dictionary<string, Key>();
     }
     
     public Authenticate(RestClient client)
     {
         _client = client;
-        _keys = new Dictionary<string, Key>();
     }
     
     /// <summary>
@@ -122,11 +126,11 @@ public class Authenticate
         }
     }
 
-    public async Task<Authenticated> Social(string provider, string socialToken)
+    public async Task<Authenticated> Social(SocialProvider provider, string socialToken)
     {
         var payload = new
         {
-            Provider = provider,
+            Provider = _socialProviders[provider],
             SocialToken = socialToken
         };
         
@@ -142,7 +146,7 @@ public class Authenticate
             if (error is { Detail: { } })
             {
                 throw new BulwarkException(error.Detail);
-            }
+            } 
         }
         
         if(response.Content != null){

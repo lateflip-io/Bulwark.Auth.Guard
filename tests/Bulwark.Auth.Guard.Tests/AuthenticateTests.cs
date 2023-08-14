@@ -219,7 +219,7 @@ public class AuthenticateTests
         var googleToken = "eyJhbGciOiJSUzI1NiIsImtpZCI6IjI3NDA1MmEyYjY0NDg3NDU3NjRlNzJjMzU5MDk3MWQ5MGNmYjU4NWEiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJuYmYiOjE2NzUwMjk5NzcsImF1ZCI6IjY1MTg4MjExMTU0OC0waHJnN2U0bzkwcTFpdXRtZm4wMnFrZjltOTBrM2QzZy5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsInN1YiI6IjEwMjIzODE1MDc1NDU1ODI4NTM3MyIsImhkIjoibGF0ZWZsaXAuaW8iLCJlbWFpbCI6ImZyaXR6QGxhdGVmbGlwLmlvIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF6cCI6IjY1MTg4MjExMTU0OC0waHJnN2U0bzkwcTFpdXRtZm4wMnFrZjltOTBrM2QzZy5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsIm5hbWUiOiJGcmVkcmljayBTZWl0eiIsInBpY3R1cmUiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BRWRGVHA3RThDUVJUVUZUNUJabEtJVTVjY2hmdFBMSDJ5eU0zN2dKaWVBRT1zOTYtYyIsImdpdmVuX25hbWUiOiJGcmVkcmljayIsImZhbWlseV9uYW1lIjoiU2VpdHoiLCJpYXQiOjE2NzUwMzAyNzcsImV4cCI6MTY3NTAzMzg3NywianRpIjoiN2IzMWY5ZDlmMTNmZmE4MWU1ZDJmODg3M2Q5MmE4YjFjYzMwYTY4YSJ9.SsYhaisQRBnYzCy6YWAy3Lo1unWOGC3BRPZswd4TuJFhgZUcUROVK_3FOGpnn1RXTPac3yX-0QnAj-LUpXgsP-in4DYm0hxvlkRGCyg9EmfY7S_W-LX4Jmuhy2bHlYdb2PDmxrd-1p77IhjYaXj5_Eagqf5rLxo6E0bEJSJAp0xcrE1zRx-SN3xMfLIIirzn-zAujcsTOtAady_jKxrLuMs-JXIf5K71ZC7EJhmoM0pp8Wq0AqfMCWhRZ4ElDD7c2MGB5by3S_dmu1kP2R6O2qPzPtHEumgdGE0MV3W2gcqjqQIVK-1HaMoUbl0c4e4agIuWI-evg3Qc7IJlWOsMFQ";
         try
         {
-            var authenticated = await _guard.Authenticate.Social("google", googleToken);
+            var authenticated = await _guard.Authenticate.Social(SocialProvider.Google, googleToken);
             Assert.NotNull(authenticated.AccessToken);
         }
         catch(Exception exception)
