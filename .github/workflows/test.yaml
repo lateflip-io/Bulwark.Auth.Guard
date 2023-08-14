@@ -18,7 +18,7 @@ jobs:
       bulwark.auth:
         image: "lateflip/bulwark.auth:latest"
         env:
-          DB_CONNECTION: mongodb://localhost:27017
+          DB_CONNECTION: mongodb://mongodb:27017
           GOOGLE_CLIENT_ID: 651882111548-0hrg7e4o90q1iutmfn02qkf9m90k3d3g.apps.googleusercontent.com
           MICROSOFT_CLIENT_ID: 3e3b3b3b-3b3b-3b3b-3b3b-3b3b3b3b3b3b
           MICROSOFT_TENANT_ID: 3e3b3b3b-3b3b-3b3b-3b3b-3b3b3b3b3b3b
@@ -28,7 +28,7 @@ jobs:
           EMAIL_TEMPLATE_DIR: src/bulwark-admin-api/email-templates
           EMAIL_SEND_ADDRESS: admin@lateflip.io
           EMAIL_SMTP: true
-          EMAIL_SMTP_HOST: localhost
+          EMAIL_SMTP_HOST: mailhog
           EMAIL_SMTP_PORT: 1025
           EMAIL_SMTP_USER: user
           EMAIL_SMTP_PASS: pass
