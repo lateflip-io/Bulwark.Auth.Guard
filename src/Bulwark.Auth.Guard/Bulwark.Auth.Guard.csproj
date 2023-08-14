@@ -6,12 +6,12 @@
     <AssemblyName>Guard</AssemblyName>
     <Authors>lateflip.io</Authors>
     <Description>A client for Bulwark.Auth</Description>
-    <PackageVersion>1.0.0-beta.3</PackageVersion>
+    <PackageVersion>1.0.0-beta.4</PackageVersion>
     <Copyright>lateflip.io</Copyright>
     <Company>lateflip.io</Company>
     <Product>Bulwark-auth</Product>
     <PackageId>Bulwark.Auth.Guard</PackageId>
-    <Version>1.0.0-beta.3</Version>
+    <Version>1.0.0-beta.4</Version>
   </PropertyGroup>
 
   <ItemGroup>
