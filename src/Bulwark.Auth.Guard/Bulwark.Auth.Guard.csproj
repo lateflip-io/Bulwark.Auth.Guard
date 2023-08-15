@@ -4,14 +4,21 @@
     <TargetFramework>net7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <AssemblyName>Guard</AssemblyName>
-    <Authors>lateflip.io</Authors>
+    <Authors>fritz@lateflip.io</Authors>
     <Description>A client for Bulwark.Auth</Description>
     <PackageVersion>1.0.0-beta.4</PackageVersion>
     <Copyright>lateflip.io</Copyright>
     <Company>lateflip.io</Company>
-    <Product>Bulwark-auth</Product>
+    <Product>Bulwark.Auth.Guard</Product>
     <PackageId>Bulwark.Auth.Guard</PackageId>
     <Version>1.0.0-beta.4</Version>
+    <Title>Bulwark.Auth.Guard</Title>
+    <PackageProjectUrl>https://github.com/lateflip-io/Bulwark.Auth.Guard</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/lateflip-io/Bulwark.Auth.Guard</PackageLicenseUrl>
+    <RepositoryUrl>https://github.com/lateflip-io/Bulwark.Auth.Guard</RepositoryUrl>
+    <RepositoryType>GIT</RepositoryType>
+    <PackageTags>Bulwark auth client</PackageTags>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -25,5 +32,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Exceptions\" />
+  </ItemGroup>
+  <ItemGroup>
+    <AdditionalFiles Include="..\..\README.md">
+      <Link>README.md</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </AdditionalFiles>
   </ItemGroup>
 </Project>
