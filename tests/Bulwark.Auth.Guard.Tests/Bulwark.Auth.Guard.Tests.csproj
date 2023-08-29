@@ -29,7 +29,4 @@
     <None Remove="MailhogClient" />
     <None Remove="ms-test\" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ms-test\" />
-  </ItemGroup>
 </Project>

@@ -102,6 +102,14 @@ public class AccountTest
             _testPassword);
         await _guard.Account.Email(_testEmail, newEmail,
             authenticated.AccessToken);
+        messages = await _mailHog.GetMessagesAsync();
+        //must verify account again with new email
+        message = messages.Items
+            .FirstOrDefault(m => m.To[0].Address == newEmail);
+        Assert.NotNull(message);
+        await _mailHog.DeleteAsync(message.ID);
+        await _guard.Account.Verify(newEmail, message.Subject);
+        
         authenticated = await _guard.Authenticate.Password(newEmail,
             _testPassword);
         Assert.NotNull(authenticated.AccessToken);
