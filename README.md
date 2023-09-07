@@ -1,6 +1,6 @@
-# Bulwark.Auth.Guard
+# Bulwark.Auth.Guard (BETA)
 
-Is a client .net library for `Bulwark.Auth` which is a simple JWT based authentication and authorization service.
+Is a client .net library for `Bulwark.Auth` which is a JWT based api developer focused auth subsystem.
 Please see: https://github.com/lateflip-io/Bulwark.Auth
 
 # Contributing
