@@ -12,20 +12,24 @@ namespace Bulwark.Auth.Guard;
 public class Authenticate
 {
     private readonly RestClient _client;
-    private Dictionary<int, Cert> _certs;
+    private Dictionary<string, Key> _keys = new();
+    private readonly Dictionary<SocialProvider, string> _socialProviders = new()
+    {
+        { SocialProvider.Google, "google" },
+        { SocialProvider.Microsoft, "microsoft" },
+        { SocialProvider.Github, "github" }
+    };
     
     public Authenticate(string baseUri)
     {
         _client = new RestClient(baseUri);
         _client.AddDefaultHeader("Content-Type", "application/json");
         _client.AddDefaultHeader("Accept", "application/json");
-        _certs = new Dictionary<int, Cert>();
     }
     
     public Authenticate(RestClient client)
     {
         _client = client;
-        _certs = new Dictionary<int, Cert>();
     }
     
     /// <summary>
@@ -122,11 +126,11 @@ public class Authenticate
         }
     }
 
-    public async Task<Authenticated> Social(string provider, string socialToken)
+    public async Task<Authenticated> Social(SocialProvider provider, string socialToken)
     {
         var payload = new
         {
-            Provider = provider,
+            Provider = _socialProviders[provider],
             SocialToken = socialToken
         };
         
@@ -142,7 +146,7 @@ public class Authenticate
             if (error is { Detail: { } })
             {
                 throw new BulwarkException(error.Detail);
-            }
+            } 
         }
         
         if(response.Content != null){
@@ -243,13 +247,14 @@ public class Authenticate
     {
         var handler = new JwtSecurityTokenHandler();
         var decodedValue = handler.ReadJwtToken(accessToken);
-        var generation = int.Parse(decodedValue.Header["gen"].ToString() ?? 
-                                   throw new BulwarkException("No generation claim"));
-        Cert cert;
+        var keyId = decodedValue.Header["kid"].ToString() ?? 
+                                   throw new BulwarkException("No kid claim");
+        Key key;
         
-        if (_certs.ContainsKey(generation))
+        
+        if (_keys.ContainsKey(keyId))
         {
-            cert = _certs[generation];
+            key = _keys[keyId];
         }
         else
         {
@@ -258,7 +263,7 @@ public class Authenticate
 
         var publicKey = RSA.Create();
 
-        publicKey.ImportFromPem(cert.PublicKey.ToCharArray());
+        publicKey.ImportFromPem(key.PublicKey.ToCharArray());
 
         var json = JwtBuilder.Create()
             .WithAlgorithm(new RS256Algorithm(publicKey))
@@ -270,22 +275,22 @@ public class Authenticate
         return token;
     }
     
-    public async Task InitializeLocalCertValidation()
+    public async Task InitializeLocalKeyValidation()
     {
-        var request = new RestRequest("certs");
+        var request = new RestRequest("keys");
             
         var response = await _client.ExecuteGetAsync(request);
 
         if (response.Content != null)
         {
-            var certs = JsonSerializer.Deserialize<List<Cert>>(response.Content);
+            var keys = JsonSerializer.Deserialize<List<Key>>(response.Content);
 
-            if (certs != null)
+            if (keys != null)
             {
-                _certs = new Dictionary<int, Cert>();
-                foreach (var cert in certs)
+                _keys = new Dictionary<string, Key>();
+                foreach (var key in keys)
                 {
-                    _certs.Add(cert.Generation, cert);
+                    _keys.Add(key.KeyId, key);
                 }
             }
         }
@@ -298,7 +303,7 @@ public class Authenticate
         {
             Email = email,
             DeviceId = deviceId,
-            RefreshToken = refreshToken
+            Token = refreshToken
         };
 
         var request = new RestRequest("authentication/renew")
@@ -333,7 +338,7 @@ public class Authenticate
         {
             Email = email,
             DeviceId = deviceId,
-            AccessToken = accessToken
+            Token = accessToken
         };
 
         var request = new RestRequest("authentication/revoke")

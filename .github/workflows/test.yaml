@@ -1,0 +1,59 @@
+name: Tests
+
+on:
+  pull_request:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    services:
+      mailhog:
+        image: mailhog/mailhog:latest
+        ports:
+          - 1025:1025
+          - 8025:8025
+      bulwark.auth:
+        image: "lateflip/bulwark.auth:latest"
+        env:
+          DB_CONNECTION: mongodb://localhost:27017
+          GOOGLE_CLIENT_ID: 651882111548-0hrg7e4o90q1iutmfn02qkf9m90k3d3g.apps.googleusercontent.com
+          MICROSOFT_CLIENT_ID: 3e3b3b3b-3b3b-3b3b-3b3b-3b3b3b3b3b3b
+          MICROSOFT_TENANT_ID: 3e3b3b3b-3b3b-3b3b-3b3b-3b3b3b3b3b3b
+          GITHUB_APP_NAME: lateflip.io
+          DOMAIN: lateflip.io
+          WEBSITE_NAME: Lateflip
+          EMAIL_TEMPLATE_DIR: src/bulwark-admin-api/email-templates
+          EMAIL_SEND_ADDRESS: admin@lateflip.io
+          EMAIL_SMTP: true
+          EMAIL_SMTP_HOST: mailhog
+          EMAIL_SMTP_PORT: 1025
+          EMAIL_SMTP_USER: user
+          EMAIL_SMTP_PASS: pass
+          EMAIL_SMTP_SECURE: false
+          VERIFICATION_URL: https://localhost:3000/verify
+          FORGOT_PASSWORD_URL: https://localhost:3000/reset-password
+          MAGIC_LINK_URL: https://localhost:3000/magic-link
+          MAGIC_CODE_EXPIRE_IN_MINUTES: 10
+          SERVICE_MODE: test
+        ports:
+          - 8080:80
+    strategy:
+      matrix:
+        dotnet-version: ['7.0.x']
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup .NET Core SDK ${{ matrix.dotnet-version }}
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: ${{ matrix.dotnet-version }}
+      - name: Start MongoDB
+        uses: supercharge/mongodb-github-action@1.10.0
+        with:
+          mongodb-version: 7
+          mongodb-replica-set: rs0
+          mongodb-port: 27017
+      - name: Install dependencies
+        run: dotnet restore
+      - name: Build
+        run: dotnet build --configuration Release --no-restore
+      - name: Test
+        run: dotnet test --no-restore --verbosity normal

@@ -16,6 +16,16 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{FE243A42-1EE4-4E88-BFEC-C8864948DE10}"
 	ProjectSection(SolutionItems) = preProject
 		.github\workflows\release.yaml = .github\workflows\release.yaml
+		.github\workflows\test.yaml = .github\workflows\test.yaml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3E57E9D0-3C83-435D-A438-0F0C1A8E9720}"
+	ProjectSection(SolutionItems) = preProject
+		updateVersion.sh = updateVersion.sh
+		docker-compose.yaml = docker-compose.yaml
+		README.md = README.md
+		LICENSE = LICENSE
+		.env = .env
 	EndProjectSection
 EndProject
 Global
