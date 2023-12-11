@@ -6,10 +6,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     services:
-      mongodb:
-        image: mongo:latest
-        ports:
-          - 27017:27017
       mailhog:
         image: mailhog/mailhog:latest
         ports:
@@ -18,7 +14,7 @@ jobs:
       bulwark.auth:
         image: "lateflip/bulwark.auth:latest"
         env:
-          DB_CONNECTION: mongodb://mongodb:27017
+          DB_CONNECTION: mongodb://localhost:27017
           GOOGLE_CLIENT_ID: 651882111548-0hrg7e4o90q1iutmfn02qkf9m90k3d3g.apps.googleusercontent.com
           MICROSOFT_CLIENT_ID: 3e3b3b3b-3b3b-3b3b-3b3b-3b3b3b3b3b3b
           MICROSOFT_TENANT_ID: 3e3b3b3b-3b3b-3b3b-3b3b-3b3b3b3b3b3b
@@ -49,6 +45,12 @@ jobs:
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: ${{ matrix.dotnet-version }}
+      - name: Start MongoDB
+        uses: supercharge/mongodb-github-action@1.10.0
+        with:
+          mongodb-version: 7
+          mongodb-replica-set: rs0
+          mongodb-port: 27017
       - name: Install dependencies
         run: dotnet restore
       - name: Build
